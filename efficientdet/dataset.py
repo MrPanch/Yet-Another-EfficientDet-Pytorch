@@ -8,7 +8,7 @@ import cv2
 
 
 class CocoDataset(Dataset):
-    def __init__(self, root_dir, set='train2017', transform=None):
+    def __init__(self, root_dir, set='train', transform=None):
 
         self.root_dir = root_dir
         self.set_name = set
@@ -168,3 +168,6 @@ class Normalizer(object):
         image, annots = sample['img'], sample['annot']
 
         return {'img': ((image.astype(np.float32) - self.mean) / self.std), 'annot': annots}
+
+if __name__ == '__main__':
+    CocoDataset('E:\Laboratory\EfficientDet-Pytorch\datasets\shape')

@@ -72,7 +72,7 @@ def boolean_string(s):
 class ModelWithLoss(nn.Module):
     def __init__(self, model, debug=False):
         super().__init__()
-        self.criterion = FocalLoss()
+        self.criterion = FocalLoss()  #loss.py
         self.model = model
         self.debug = debug
 
@@ -88,7 +88,7 @@ class ModelWithLoss(nn.Module):
 
 def train(opt):
     params = Params(f'projects/{opt.project}.yml')
-
+    # выше f-string https://python-scripts.com/f-strings
     if params.num_gpus == 0:
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
@@ -101,6 +101,8 @@ def train(opt):
     opt.log_path = opt.log_path + f'/{params.project_name}/tensorboard/'
     os.makedirs(opt.log_path, exist_ok=True)
     os.makedirs(opt.saved_path, exist_ok=True)
+    #exist_ok (optional) : A default value False is used for this parameter.
+    # If the target directory already exists an OSError is raised if its value is False otherwise not.
 
     training_params = {'batch_size': opt.batch_size,
                        'shuffle': True,
@@ -174,7 +176,7 @@ def train(opt):
     # but it would also slow down the training by a little bit.
     if params.num_gpus > 1 and opt.batch_size // params.num_gpus < 4:
         model.apply(replace_w_sync_bn)
-        use_sync_bn = True
+        use_sync_bn = Trueslack
     else:
         use_sync_bn = False
 

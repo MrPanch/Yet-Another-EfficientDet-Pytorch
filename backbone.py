@@ -56,7 +56,7 @@ class EfficientDetBackbone(nn.Module):
 
     def freeze_bn(self):
         for m in self.modules():
-            if isinstance(m, nn.BatchNorm2d):
+            if isinstance(m, nn.BatchNorm2d):  #isinstance - возвращает true, если m - это nn.BatchNorm2d
                 m.eval()
 
     def forward(self, inputs):

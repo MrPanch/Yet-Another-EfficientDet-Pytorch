@@ -23,7 +23,7 @@ def calc_iou(a, b):
 
     return IoU
 
-
+#https://habr.com/ru/company/ods/blog/336624/#10-focal-loss-for-dense-object-detection
 class FocalLoss(nn.Module):
     def __init__(self):
         super(FocalLoss, self).__init__()

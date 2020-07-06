@@ -51,7 +51,7 @@ class ClipBoxes(nn.Module):
 
         return boxes
 
-
+#https://medium.com/@andersasac/anchor-boxes-the-key-to-quality-object-detection-ddf9d612d4f9
 class Anchors(nn.Module):
     """
     adapted and modified from https://github.com/google/automl/blob/master/efficientdet/anchors.py by Zylo117
@@ -62,7 +62,7 @@ class Anchors(nn.Module):
         self.anchor_scale = anchor_scale
 
         if pyramid_levels is None:
-            self.pyramid_levels = [3, 4, 5, 6, 7]
+            self.pyramid_levels = [3, 4, 5, 6, 7]  #первые два левела пирамид фич не участвует в архитектруре
 
         self.strides = kwargs.get('strides', [2 ** x for x in self.pyramid_levels])
         self.scales = np.array(kwargs.get('scales', [2 ** 0, 2 ** (1.0 / 3.0), 2 ** (2.0 / 3.0)]))

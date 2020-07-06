@@ -15,7 +15,10 @@ class SeparableConvBlock(nn.Module):
     """
     created by Zylo117
     """
-
+    #Статья про обычную свёртку
+    #https://towardsdatascience.com/what-is-a-neural-network-6010edabde2b
+    # Статья про раздельную свёртку
+    # https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728
     def __init__(self, in_channels, out_channels=None, norm=True, activation=False, onnx_export=False):
         super(SeparableConvBlock, self).__init__()
         if out_channels is None:
