@@ -34,10 +34,11 @@ BlockArgs = collections.namedtuple('BlockArgs', [
 GlobalParams.__new__.__defaults__ = (None,) * len(GlobalParams._fields)
 BlockArgs.__new__.__defaults__ = (None,) * len(BlockArgs._fields)
 
-
+# Статья про Swish https://medium.com/@neuralnets/swish-activation-function-by-google-53e1ea86f820
 class SwishImplementation(torch.autograd.Function):
+# Статья про способ имплементации https://pytorch.org/tutorials/beginner/examples_autograd/two_layer_net_custom_function.html
     @staticmethod
-    def forward(ctx, i):
+    def forward(ctx, i):    # ctx stands for context object
         result = i * torch.sigmoid(i)
         ctx.save_for_backward(i)
         return result

@@ -169,5 +169,5 @@ class Normalizer(object):
 
         return {'img': ((image.astype(np.float32) - self.mean) / self.std), 'annot': annots}
 
-if __name__ == '__main__':
-    CocoDataset('E:\Laboratory\EfficientDet-Pytorch\datasets\shape')
+# if __name__ == '__main__':
+#     CocoDataset('E:\Laboratory\EfficientDet-Pytorch\datasets\shape')

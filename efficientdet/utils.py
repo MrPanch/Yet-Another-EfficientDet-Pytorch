@@ -16,6 +16,8 @@ class BBoxTransform(nn.Module):
         Returns:
 
         """
+        print("HereHereHereHereHere")
+        print(type(anchors))
         y_centers_a = (anchors[..., 0] + anchors[..., 2]) / 2
         x_centers_a = (anchors[..., 1] + anchors[..., 3]) / 2
         ha = anchors[..., 2] - anchors[..., 0]

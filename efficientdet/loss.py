@@ -23,7 +23,8 @@ def calc_iou(a, b):
 
     return IoU
 
-#https://habr.com/ru/company/ods/blog/336624/#10-focal-loss-for-dense-object-detection
+# https://habr.com/ru/company/ods/blog/336624/#10-focal-loss-for-dense-object-detection
+# https://arxiv.org/pdf/1708.02002.pdf
 class FocalLoss(nn.Module):
     def __init__(self):
         super(FocalLoss, self).__init__()
@@ -34,7 +35,6 @@ class FocalLoss(nn.Module):
         batch_size = classifications.shape[0]
         classification_losses = []
         regression_losses = []
-
         anchor = anchors[0, :, :]  # assuming all image sizes are the same, which it is
         dtype = anchors.dtype
 
@@ -51,8 +51,9 @@ class FocalLoss(nn.Module):
             bbox_annotation = annotations[j]
             bbox_annotation = bbox_annotation[bbox_annotation[:, 4] != -1]
 
+            # https://pytorch.org/docs/master/generated/torch.clamp.html
             classification = torch.clamp(classification, 1e-4, 1.0 - 1e-4)
-            
+
             if bbox_annotation.shape[0] == 0:
                 if torch.cuda.is_available():
                     
@@ -94,7 +95,7 @@ class FocalLoss(nn.Module):
                 targets = targets.cuda()
 
             targets[torch.lt(IoU_max, 0.4), :] = 0
-
+            # https://pytorch.org/docs/master/generated/torch.ge.html
             positive_indices = torch.ge(IoU_max, 0.5)
 
             num_positive_anchors = positive_indices.sum()
